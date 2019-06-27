@@ -8,13 +8,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UndirectedGraphTest {
+class DirectedGraphTest {
 
     private Graph<String> graph;
 
     @BeforeEach
     void setUp() {
-        graph = new UndirectedGraph<>();
+        graph = new DirectedGraph<>();
     }
 
     @Test
@@ -39,18 +39,18 @@ class UndirectedGraphTest {
         List<Edge<String>> expected = new ArrayList<>();
         expected.add(graph.addEdge("first", "second"));
         graph.addEdge("second", "third");
-        expected.add(graph.addEdge("fourth", "second"));
+        expected.add(graph.addEdge("second", "fourth"));
         List<Edge<String>> path = graph.getPath("first", "fourth");
+        assertNotNull(path);
         assertIterableEquals(expected, path);
     }
 
     @Test
-    void getReversePath() {
-        List<Edge<String>> expected = new ArrayList<>();
-        expected.add(graph.addEdge("fourth", "second"));
-        expected.add(graph.addEdge("first", "second"));
+    void getReversePathNull() {
+        graph.addEdge("first", "second");
         graph.addEdge("second", "third");
+        graph.addEdge("second", "fourth");
         List<Edge<String>> path = graph.getPath("fourth", "first");
-        assertIterableEquals(expected, path);
+        assertNull(path);
     }
 }
