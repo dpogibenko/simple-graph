@@ -20,4 +20,30 @@ public class UndirectedEdge<T> implements Edge<T> {
     public T getSecond() {
         return second;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UndirectedEdge<?> that = (UndirectedEdge<?>) o;
+
+        if (!first.equals(that.first)) return false;
+        return second.equals(that.second);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = first.hashCode();
+        result = 31 * result + second.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "UndirectedEdge{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
+    }
 }

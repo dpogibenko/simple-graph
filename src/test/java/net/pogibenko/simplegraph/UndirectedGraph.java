@@ -21,10 +21,30 @@ public class UndirectedGraph<T> implements Graph<T> {
 
     @Override
     public List<Edge<T>> getPath(T first, T second) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return getPathDepth(first, second, new HashSet<>());
     }
 
     private Set<T> initAdj(T t) {
         return new HashSet<>();
+    }
+
+    private List<Edge<T>> getPathDepth(T first, T second, Set<T> visited) {
+        Set<T> adj = adjMap.get(first);
+        if (adj.contains(second)) {
+            return Collections.singletonList(new UndirectedEdge<>(first, second));
+        }
+        visited.add(first);
+        for (T vertex : adj) {
+            if (!visited.contains(vertex)) {
+                List<Edge<T>> path = getPathDepth(vertex, second, visited);
+                if (path != null) {
+                    ArrayList<Edge<T>> result = new ArrayList<>();
+                    result.add(new UndirectedEdge<>(first, vertex));
+                    result.addAll(path);
+                    return result;
+                }
+            }
+        }
+        return null;
     }
 }
