@@ -28,15 +28,13 @@ public class UndirectedEdge<T> implements Edge<T> {
 
         UndirectedEdge<?> that = (UndirectedEdge<?>) o;
 
-        if (!first.equals(that.first)) return false;
-        return second.equals(that.second);
+        if (!first.equals(that.first) && !first.equals(that.second)) return false;
+        return second.equals(that.second) || second.equals(that.first);
     }
 
     @Override
     public int hashCode() {
-        int result = first.hashCode();
-        result = 31 * result + second.hashCode();
-        return result;
+        return first.hashCode() + second.hashCode();
     }
 
     @Override

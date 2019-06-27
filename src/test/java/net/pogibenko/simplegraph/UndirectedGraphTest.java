@@ -1,11 +1,9 @@
 package net.pogibenko.simplegraph;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,7 +21,7 @@ class UndirectedGraphTest {
     void addVertex() {
         String vertex = "first";
         String result = graph.addVertex(vertex);
-        Assertions.assertEquals(vertex, result);
+        assertEquals(vertex, result);
     }
 
     @Test
@@ -31,9 +29,9 @@ class UndirectedGraphTest {
         String first = "first";
         String second = "second";
         Edge<String> edge = graph.addEdge(first, second);
-        Assertions.assertNotNull(edge);
-        Assertions.assertEquals(first, edge.getFirst());
-        Assertions.assertEquals(second, edge.getSecond());
+        assertNotNull(edge);
+        assertEquals(first, edge.getFirst());
+        assertEquals(second, edge.getSecond());
     }
 
     @Test
@@ -41,8 +39,8 @@ class UndirectedGraphTest {
         List<Edge<String>> expected = new ArrayList<>();
         expected.add(graph.addEdge("first", "second"));
         graph.addEdge("second", "third");
-        expected.add(graph.addEdge("second", "fourth"));
+        expected.add(graph.addEdge("fourth", "second"));
         List<Edge<String>> path = graph.getPath("first", "fourth");
-        Assertions.assertIterableEquals(expected, path);
+        assertIterableEquals(expected, path);
     }
 }
