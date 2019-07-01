@@ -38,4 +38,10 @@ class DfsGraphPathFinderTest {
         List<String> path = pathFinder.findPath(adjMap, "a", "f");
         assertIterableEquals(expectedPath, path);
     }
+
+    @Test
+    void nullAdj() {
+        Map<String, Set<String>> adjMap = new HashMap<>();
+        pathFinder.findPath(adjMap, "a", "b");
+    }
 }

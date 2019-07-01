@@ -1,5 +1,6 @@
 package net.pogibenko.simplegraph;
 
+import net.pogibenko.simplegraph.impl.DfsGraphPathFinder;
 import net.pogibenko.simplegraph.impl.DirectedGraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class DirectedGraphTest {
 
     @BeforeEach
     void setUp() {
-        graph = new DirectedGraph<>();
+        graph = new DirectedGraph<>(new DfsGraphPathFinder<>());
     }
 
     @Test

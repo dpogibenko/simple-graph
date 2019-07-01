@@ -21,7 +21,7 @@ public class DfsGraphPathFinder<T> implements GraphPathFinder<T> {
                                       @NotNull T fromVertex,
                                       @NotNull T toVertex,
                                       @NotNull Set<T> visited) {
-        Set<T> adj = adjMap.get(fromVertex);
+        Set<T> adj = adjMap.getOrDefault(fromVertex, Collections.emptySet());
         if (adj.contains(toVertex)) {
             return Arrays.asList(fromVertex, toVertex);
         }
