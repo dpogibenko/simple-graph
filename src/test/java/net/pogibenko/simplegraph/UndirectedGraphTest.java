@@ -14,7 +14,7 @@ class UndirectedGraphTest {
 
     @BeforeEach
     void setUp() {
-        graph = new UndirectedGraph<>();
+        graph = new UndirectedGraph<>(new DfsGraphPathFinder<>());
     }
 
     @Test

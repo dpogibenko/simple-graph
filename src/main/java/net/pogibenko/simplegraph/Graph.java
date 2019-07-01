@@ -1,12 +1,18 @@
 package net.pogibenko.simplegraph;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 public interface Graph<T> {
 
-    T addVertex(T vertex);
+    @NotNull
+    T addVertex(@NotNull T vertex);
 
-    Edge<T> addEdge(T first, T second);
+    @NotNull
+    Edge<T> addEdge(@NotNull T first, @NotNull T second);
 
-    List<Edge<T>> getPath(T first, T second);
+    @Nullable
+    List<Edge<T>> getPath(@NotNull T first, @NotNull T second);
 }

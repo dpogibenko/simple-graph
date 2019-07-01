@@ -9,6 +9,13 @@ public class UndirectedGraph<T> implements Graph<T> {
 
     private Map<T, Set<T>> adjMap = new HashMap<>();
 
+    private GraphPathFinder<T> pathFinder;
+
+    public UndirectedGraph(GraphPathFinder<T> pathFinder) {
+        this.pathFinder = pathFinder;
+    }
+
+    @NotNull
     @Override
     public T addVertex(@NotNull T vertex) {
         adjMap.put(vertex, initAdj(vertex));
@@ -17,16 +24,17 @@ public class UndirectedGraph<T> implements Graph<T> {
 
     @NotNull
     @Override
-    public Edge<T> addEdge(@NotNull T first, @NotNull T second) {
-        adjMap.computeIfAbsent(first, this::initAdj).add(second);
-        adjMap.computeIfAbsent(second, this::initAdj).add(first);
-        return new UndirectedEdge<>(first, second);
+    public Edge<T> addEdge(@NotNull T fromVertex, @NotNull T toVertex) {
+        adjMap.computeIfAbsent(fromVertex, this::initAdj).add(toVertex);
+        adjMap.computeIfAbsent(toVertex, this::initAdj).add(fromVertex);
+        return new UndirectedEdge<>(fromVertex, toVertex);
     }
 
     @Nullable
     @Override
-    public List<Edge<T>> getPath(@NotNull T first, @NotNull T second) {
-        return getPathDfs(first, second, new HashSet<>());
+    public List<Edge<T>> getPath(@NotNull T fromVertex, @NotNull T toVertex) {
+        List<T> path = pathFinder.findPath(adjMap, fromVertex, toVertex);
+        return toEdges(path);
     }
 
     @NotNull
@@ -35,50 +43,10 @@ public class UndirectedGraph<T> implements Graph<T> {
     }
 
     @Nullable
-    private List<Edge<T>> getPathDfs(@NotNull T first, @NotNull T second, @NotNull Set<T> visited) {
-        Set<T> adj = adjMap.get(first);
-        if (adj.contains(second)) {
-            return Collections.singletonList(new UndirectedEdge<>(first, second));
+    private List<Edge<T>> toEdges(@Nullable List<T> path) {
+        if (path == null) {
+            return null;
         }
-        visited.add(first);
-        for (T vertex : adj) {
-            if (!visited.contains(vertex)) {
-                List<Edge<T>> path = getPathBfs(vertex, second, visited);
-                if (path != null) {
-                    ArrayList<Edge<T>> result = new ArrayList<>();
-                    result.add(new UndirectedEdge<>(first, vertex));
-                    result.addAll(path);
-                    return result;
-                }
-            }
-        }
-        return null;
-    }
-
-    @Nullable
-    private List<Edge<T>> getPathBfs(@NotNull T first, @NotNull T second, @NotNull Set<T> visited) {
-        Queue<Pair<T, List<T>>> searchQueue = new LinkedList<>();
-        Pair<T,List<T>> next = new Pair<>(first, Collections.emptyList());
-        while (next != null) {
-            T vertex = next.getFirst();
-            if (!visited.contains(vertex)) {
-                List<T> path = new ArrayList<>(next.getSecond());
-                path.add(vertex);
-                Set<T> adj = adjMap.get(vertex);
-                if (adj.contains(second)){
-                    path.add(second);
-                    return toPathEdges(path);
-                } else {
-                    visited.add(vertex);
-                    adj.forEach(t -> searchQueue.add(new Pair<>(t, path)));
-                }
-            }
-            next = searchQueue.poll();
-        }
-        return null;
-    }
-
-    private List<Edge<T>> toPathEdges(List<T> path) {
         List<Edge<T>> pathEdges = new ArrayList<>();
         for(int i = 1; i < path.size(); i++) {
             pathEdges.add(new UndirectedEdge<>(path.get(i-1), path.get(i)));
