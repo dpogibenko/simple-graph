@@ -1,4 +1,4 @@
-package net.pogibenko.simplegraph;
+package net.pogibenko.simplegraph.util;
 
 public class Pair<T,S> {
 

@@ -1,4 +1,7 @@
-package net.pogibenko.simplegraph;
+package net.pogibenko.simplegraph.impl;
+
+import net.pogibenko.simplegraph.Edge;
+import net.pogibenko.simplegraph.Graph;
 
 import java.util.List;
 

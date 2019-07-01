@@ -1,4 +1,6 @@
-package net.pogibenko.simplegraph;
+package net.pogibenko.simplegraph.impl;
+
+import net.pogibenko.simplegraph.Edge;
 
 public class UndirectedEdge<T> implements Edge<T> {
 

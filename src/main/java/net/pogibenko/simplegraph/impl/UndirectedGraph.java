@@ -1,5 +1,8 @@
-package net.pogibenko.simplegraph;
+package net.pogibenko.simplegraph.impl;
 
+import net.pogibenko.simplegraph.Edge;
+import net.pogibenko.simplegraph.Graph;
+import net.pogibenko.simplegraph.GraphPathFinder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

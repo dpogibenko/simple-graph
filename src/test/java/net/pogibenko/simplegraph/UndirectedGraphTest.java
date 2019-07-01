@@ -1,5 +1,7 @@
 package net.pogibenko.simplegraph;
 
+import net.pogibenko.simplegraph.impl.DfsGraphPathFinder;
+import net.pogibenko.simplegraph.impl.UndirectedGraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

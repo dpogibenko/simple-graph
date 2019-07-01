@@ -1,5 +1,6 @@
 package net.pogibenko.simplegraph;
 
+import net.pogibenko.simplegraph.impl.DirectedGraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
