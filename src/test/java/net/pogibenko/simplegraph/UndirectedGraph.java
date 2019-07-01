@@ -26,7 +26,7 @@ public class UndirectedGraph<T> implements Graph<T> {
     @Nullable
     @Override
     public List<Edge<T>> getPath(@NotNull T first, @NotNull T second) {
-        return getPathDepth(first, second, new HashSet<>());
+        return getPathDfs(first, second, new HashSet<>());
     }
 
     @NotNull
@@ -35,7 +35,7 @@ public class UndirectedGraph<T> implements Graph<T> {
     }
 
     @Nullable
-    private List<Edge<T>> getPathDepth(@NotNull T first, @NotNull T second, @NotNull Set<T> visited) {
+    private List<Edge<T>> getPathDfs(@NotNull T first, @NotNull T second, @NotNull Set<T> visited) {
         Set<T> adj = adjMap.get(first);
         if (adj.contains(second)) {
             return Collections.singletonList(new UndirectedEdge<>(first, second));
@@ -43,7 +43,7 @@ public class UndirectedGraph<T> implements Graph<T> {
         visited.add(first);
         for (T vertex : adj) {
             if (!visited.contains(vertex)) {
-                List<Edge<T>> path = getPathDepth(vertex, second, visited);
+                List<Edge<T>> path = getPathDfs(vertex, second, visited);
                 if (path != null) {
                     ArrayList<Edge<T>> result = new ArrayList<>();
                     result.add(new UndirectedEdge<>(first, vertex));
