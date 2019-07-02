@@ -42,7 +42,7 @@ class DirectedGraphTest {
         expected.add(graph.addEdge("first", "second"));
         graph.addEdge("second", "third");
         expected.add(graph.addEdge("second", "fourth"));
-        List<Edge<String>> path = graph.getPath("first", "fourth");
+        List<Edge<String>> path = graph.findPath("first", "fourth");
         assertNotNull(path);
         assertIterableEquals(expected, path);
     }
@@ -52,7 +52,7 @@ class DirectedGraphTest {
         graph.addEdge("first", "second");
         graph.addEdge("second", "third");
         graph.addEdge("second", "fourth");
-        List<Edge<String>> path = graph.getPath("fourth", "first");
+        List<Edge<String>> path = graph.findPath("fourth", "first");
         assertNull(path);
     }
 }

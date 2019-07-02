@@ -4,6 +4,10 @@ import net.pogibenko.simplegraph.Edge;
 import net.pogibenko.simplegraph.GraphPathFinder;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Implementation for undirected graphs
+ * @param <T> type of vertices in this graph
+ */
 public class UndirectedGraph<T> extends AbstractGraph<T> {
 
     public UndirectedGraph(@NotNull GraphPathFinder<T> pathFinder) {

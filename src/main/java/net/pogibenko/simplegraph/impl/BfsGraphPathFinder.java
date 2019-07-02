@@ -7,6 +7,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Finds path using Breadth First Search algorithm
+ * @param <T> type of vertices in graph
+ */
 public class BfsGraphPathFinder<T> implements GraphPathFinder<T> {
 
     @Nullable

@@ -6,6 +6,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Finds path using Depth First Search algorithm
+ * @param <T> type of vertices in graph
+ */
 public class DfsGraphPathFinder<T> implements GraphPathFinder<T> {
 
     @Nullable
@@ -16,6 +20,14 @@ public class DfsGraphPathFinder<T> implements GraphPathFinder<T> {
         return findPathRecursive(adjMap, fromVertex, toVertex, new HashSet<>());
     }
 
+    /**
+     * Recursively finds path from one vertex to another
+     * @param adjMap map containing adjacency for vertices
+     * @param fromVertex source vertex
+     * @param toVertex destination vertex
+     * @param visited set of visited vertices
+     * @return list of vertices forming path from one vertex to another or null if there is no path
+     */
     @Nullable
     private List<T> findPathRecursive(@NotNull Map<T, Set<T>> adjMap,
                                       @NotNull T fromVertex,

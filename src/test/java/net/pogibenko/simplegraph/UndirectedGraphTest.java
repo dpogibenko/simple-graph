@@ -42,7 +42,7 @@ class UndirectedGraphTest {
         expected.add(graph.addEdge("first", "second"));
         graph.addEdge("second", "third");
         expected.add(graph.addEdge("fourth", "second"));
-        List<Edge<String>> path = graph.getPath("first", "fourth");
+        List<Edge<String>> path = graph.findPath("first", "fourth");
         assertIterableEquals(expected, path);
     }
 
@@ -52,7 +52,7 @@ class UndirectedGraphTest {
         expected.add(graph.addEdge("fourth", "second"));
         expected.add(graph.addEdge("first", "second"));
         graph.addEdge("second", "third");
-        List<Edge<String>> path = graph.getPath("fourth", "first");
+        List<Edge<String>> path = graph.findPath("fourth", "first");
         assertIterableEquals(expected, path);
     }
 }

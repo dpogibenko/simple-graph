@@ -8,6 +8,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Implementation for directed graphs
+ * @param <T> type of vertices in this graph
+ */
 public class DirectedGraph<T> extends AbstractGraph<T> {
 
     public DirectedGraph(@NotNull GraphPathFinder<T> pathFinder) {

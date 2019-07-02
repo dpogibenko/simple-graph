@@ -2,6 +2,10 @@ package net.pogibenko.simplegraph.impl;
 
 import net.pogibenko.simplegraph.Edge;
 
+/**
+ * Implementation for edges of undirected graphs
+ * @param <T> type of vertices in this edge
+ */
 public class DirectedEdge<T> implements Edge<T> {
 
     private T first;
